@@ -10,88 +10,124 @@
   --accent:#c8a882; --accent2:#9a9a9a; --white:#fff;
   --green:#3a7a3a; --gl:#e8f4e8; --yl:#fef9e7; --border:#d4cdc6;
   --r:6px;
+  --font:'Roboto Condensed',Arial Narrow,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;height:100%;}
 body{font-family:Arial Narrow,Arial,sans-serif;background:var(--bg);color:var(--anthrazit);font-size:14px;}
+
+/* HEADER */
 header{background:var(--anthrazit);position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.3);}
 .h-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px 7px;border-bottom:2px solid var(--braun);}
-.logo{font-weight:700;font-size:15px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;}
-.logo small{display:block;color:var(--accent2);font-weight:400;font-size:9px;letter-spacing:1px;}
-.proj{font-size:11px;color:var(--accent2);text-align:right;line-height:1.3;}
-.proj strong{display:block;color:#fff;font-size:12px;font-weight:700;}
-.tabs{display:flex;overflow-x:auto;background:#1e1b18;scrollbar-width:none;gap:0;}
+.logo{font-weight:700;font-size:17px;letter-spacing:3px;color:var(--accent);text-transform:uppercase;}
+.logo small{display:block;color:var(--accent2);font-weight:400;font-size:10px;letter-spacing:2px;}
+.proj{font-size:12px;color:var(--accent2);text-align:right;line-height:1.4;}
+.proj strong{display:block;color:#fff;font-size:13px;font-weight:700;}
+
+/* TABS */
+.tabs{display:flex;overflow-x:auto;background:#1e1b18;scrollbar-width:none;-webkit-overflow-scrolling:touch;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{flex-shrink:0;padding:10px 12px;background:none;border:none;border-bottom:3px solid transparent;
-  color:var(--accent2);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.tab{flex-shrink:0;padding:11px 15px;background:none;border:none;border-bottom:3px solid transparent;
+  color:var(--accent2);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;
+  font-family:Arial Narrow,Arial,sans-serif;-webkit-tap-highlight-color:transparent;}
 .tab.on{color:var(--accent);border-bottom-color:var(--accent);background:rgba(255,255,255,.04);}
-.tab .n{font-size:9px;font-weight:400;margin-left:2px;}
-.fbar{background:var(--anthrazit);padding:6px 10px;display:flex;gap:5px;}
+.tab .n{font-size:10px;font-weight:400;margin-left:3px;}
+
+/* FILTERBAR */
+.fbar{background:var(--anthrazit);padding:7px 14px 8px;display:flex;gap:7px;align-items:center;border-top:1px solid rgba(255,255,255,.06);}
 .sw{position:relative;flex:1;}
-.sw input{width:100%;padding:6px 8px 6px 24px;border-radius:var(--r);border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);color:#fff;font-size:12px;}
-.sw .si{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--accent2);font-size:11px;}
-.sbar{background:var(--braun);padding:4px 10px;display:flex;gap:10px;font-size:10px;color:rgba(255,255,255,.85);}
-.sp{display:flex;align-items:center;gap:3px;}
-.sd{width:6px;height:6px;border-radius:50%;}
+.sw input{width:100%;padding:7px 10px 7px 28px;border-radius:var(--r);border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);color:#fff;font-size:13px;font-family:Arial Narrow,Arial,sans-serif;}
+.sw input::placeholder{color:var(--accent2);}
+.sw .si{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--accent2);font-size:12px;}
+
+/* STATS */
+.sbar{background:var(--braun);padding:5px 14px;display:flex;gap:14px;font-size:11px;color:rgba(255,255,255,.85);}
+.sp{display:flex;align-items:center;gap:5px;}
+.sd{width:8px;height:8px;border-radius:50%;}
 .dok{background:#5cb85c;} .dop{background:#e8aa40;}
-.sp strong{color:#fff;font-size:11px;}
-main{padding:0;}
-.panel{display:none;padding-bottom:60px;}
+.sp strong{color:#fff;}
+
+/* PANELS */
+.panel{display:none;padding-bottom:80px;}
 .panel.on{display:block;}
-.bblock{background:#fff;margin:8px 0 0;}
-.bhdr{background:var(--bg2);padding:8px 10px;display:flex;align-items:center;
-  border-left:3px solid var(--accent);cursor:pointer;user-select:none;gap:5px;}
-.bhdr h3{font-size:12px;font-weight:700;color:var(--braun);flex:1;margin:0;}
-.bpos{font-size:9px;color:var(--accent2);}
-.bcnt{font-size:9px;color:var(--accent2);}
-.bprog{font-size:9px;font-weight:700;color:var(--green);text-align:right;min-width:35px;}
-.btog{font-size:10px;opacity:.4;transition:transform .18s;}
+
+/* BEREICH */
+.bblock{background:#fff;margin:10px 0 0;}
+.bhdr{background:var(--bg2);padding:9px 14px;display:flex;align-items:center;
+  border-left:4px solid var(--accent);cursor:pointer;user-select:none;gap:6px;}
+.bhdr h3{font-size:13px;font-weight:700;color:var(--braun);flex:1;}
+.bpos{font-size:10px;color:var(--accent2);flex-shrink:0;}
+.bcnt{font-size:10px;color:var(--accent2);flex-shrink:0;}
+.bprog{font-size:10px;font-weight:700;color:var(--green);flex-shrink:0;min-width:40px;text-align:right;}
+.btog{font-size:11px;opacity:.4;transition:transform .18s;flex-shrink:0;}
 .btog.cl{transform:rotate(-90deg);}
 .ilist{display:block;}
 .ilist.hid{display:none;}
-.card{border-bottom:1px solid var(--border);padding:8px 10px;}
+
+/* ITEM CARD */
+.card{border-bottom:1px solid var(--border);padding:10px 14px;}
 .card:last-child{border-bottom:none;}
 .card.done{background:var(--gl);}
 .card.part{background:var(--yl);}
-.ih{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px;}
-.pb{background:var(--anthrazit);color:var(--accent);font-size:8px;font-weight:700;
-  padding:1px 4px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
-.ii{flex:1;min-width:0;}
-.ibez{font-size:13px;font-weight:700;color:var(--anthrazit);line-height:1.2;}
-.imet{font-size:10px;color:var(--accent2);margin-top:1px;display:flex;gap:6px;flex-wrap:wrap;}
-.img{font-size:11px;font-weight:700;color:var(--braun);white-space:nowrap;}
-.crow{display:flex;gap:4px;flex-wrap:wrap;}
-.ck{display:flex;align-items:center;gap:3px;padding:4px 9px;border-radius:16px;
-  border:1.2px solid var(--border);cursor:pointer;font-size:11px;font-weight:600;
-  background:var(--bg);color:var(--anthrazit);touch-action:manipulation;transition:all .12s;user-select:none;}
+.ih{display:flex;align-items:flex-start;gap:9px;margin-bottom:8px;}
+.pb{background:var(--anthrazit);color:var(--accent);font-size:9px;font-weight:700;
+  padding:2px 6px;border-radius:3px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.ii{flex:1;}
+.ibez{font-size:14px;font-weight:700;color:var(--anthrazit);line-height:1.3;}
+.imet{font-size:11px;color:var(--accent2);margin-top:2px;display:flex;gap:10px;flex-wrap:wrap;}
+.img{font-size:12px;font-weight:700;color:var(--braun);white-space:nowrap;margin-top:2px;flex-shrink:0;}
+
+/* CHECKS */
+.crow{display:flex;gap:6px;flex-wrap:wrap;}
+.ck{display:flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;
+  border:1.5px solid var(--border);cursor:pointer;font-size:12px;font-weight:700;
+  background:var(--bg);color:var(--anthrazit);-webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;transition:all .12s;user-select:none;}
 .ck:active{transform:scale(.95);}
 .ck.on{border-color:var(--green);background:var(--green);color:#fff;}
 .ck-ib.on{border-color:#5b4c8a;background:#5b4c8a;}
 .ck-ew.on{border-color:#1a6b6b;background:#1a6b6b;}
-.cki{font-size:11px;}
-.fbtn{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;
-  background:var(--anthrazit);color:#fff;border-radius:16px;font-size:11px;font-weight:700;
-  cursor:pointer;border:none;margin-top:6px;font-family:Arial Narrow,Arial,sans-serif;}
+.cki{font-size:13px;}
+
+/* FOTO */
+.fsec{margin-top:8px;}
+.fbtn{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;
+  background:var(--anthrazit);color:#fff;border-radius:20px;font-size:12px;font-weight:700;
+  cursor:pointer;border:none;font-family:Arial Narrow,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .fbtn:active{background:var(--braun);}
-.fcnt{background:var(--accent);color:var(--anthrazit);font-size:9px;padding:0 4px;border-radius:8px;font-weight:700;}
-.fgrid{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;}
-.fth{position:relative;width:60px;height:60px;border-radius:4px;overflow:hidden;
+.fcnt{background:var(--accent);color:var(--anthrazit);font-size:10px;padding:0 5px;border-radius:10px;font-weight:700;}
+.fgrid{display:flex;gap:7px;flex-wrap:wrap;margin-top:7px;}
+.fth{position:relative;width:72px;height:72px;border-radius:6px;overflow:hidden;
   border:2px solid var(--border);cursor:pointer;flex-shrink:0;}
 .fth img{width:100%;height:100%;object-fit:cover;}
-.fdel{position:absolute;top:1px;right:1px;background:rgba(139,34,34,.9);color:#fff;
-  border:none;border-radius:50%;width:18px;height:18px;font-size:10px;
+.fdel{position:absolute;top:2px;right:2px;background:rgba(139,34,34,.85);color:#fff;
+  border:none;border-radius:50%;width:20px;height:20px;font-size:11px;
   display:flex;align-items:center;justify-content:center;cursor:pointer;}
-.fab{background:var(--braun);color:#fff;border:none;border-radius:24px;padding:9px 15px;font-size:12px;font-weight:700;
-  box-shadow:0 4px 16px rgba(107,80,64,.4);cursor:pointer;display:flex;align-items:center;gap:6px;z-index:50;}
-.fab:active{transform:scale(.97);}
+
+/* ANMERKUNG */
+.anm{width:100%;margin-top:8px;padding:6px 10px;border:1px solid var(--border);
+  border-radius:var(--r);font-size:12px;color:var(--anthrazit);background:var(--bg);
+  resize:none;min-height:32px;font-family:Arial Narrow,Arial,sans-serif;}
+.anm:focus{outline:none;border-color:var(--braun);}
+
+/* LIGHTBOX */
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;
   align-items:center;justify-content:center;}
 .lb.on{display:flex;}
-.lb img{max-width:94vw;max-height:85vh;border-radius:6px;object-fit:contain;}
-.lbx{position:fixed;top:10px;right:10px;background:rgba(255,255,255,.15);color:#fff;
-  border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;
+.lb img{max-width:94vw;max-height:85vh;border-radius:8px;object-fit:contain;}
+.lbx{position:fixed;top:14px;right:14px;background:rgba(255,255,255,.15);color:#fff;
+  border:none;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;}
+
+/* FAB */
+.fab{background:var(--braun);color:#fff;
+  border:none;border-radius:28px;padding:11px 18px;font-size:13px;font-weight:700;
+  box-shadow:0 4px 16px rgba(107,80,64,.4);cursor:pointer;
+  display:flex;align-items:center;gap:7px;z-index:50;font-family:Arial Narrow,Arial,sans-serif;
+  -webkit-tap-highlight-color:transparent;}
+.fab:active{transform:scale(.97);}
+.nores{text-align:center;padding:40px;color:var(--accent2);font-size:14px;}
 </style>
 </head>
 <body>
@@ -104,26 +140,26 @@ main{padding:0;}
   <div class="tabs" id="tabs"></div>
   <div class="fbar">
     <div class="sw">
-      <span class="si">🔍</span>
-      <input type="text" id="srch" placeholder="Suche...">
+      <span class="si">&#128269;</span>
+      <input type="text" id="srch" placeholder="Suche: Bezeichnung, Fabrikat, Pos&#46;&#46;&#46;">
     </div>
   </div>
   <div class="sbar">
-    <span class="sp"><span class="sd dok"></span>Fertig: <strong id="cD">0</strong></span>
-    <span class="sp"><span class="sd dop"></span>Offen: <strong id="cO">0</strong></span>
-    <span class="sp">Summe: <strong id="cT">0</strong></span>
+    <span class="sp"><span class="sd dok"></span>Vollst&#228;ndig: <strong id="cD">0</strong></span>
+    <span class="sp"><span class="sd dop"></span>Offen/Teilw.: <strong id="cO">0</strong></span>
+    <span class="sp">Gesamt: <strong id="cT">0</strong></span>
   </div>
 </header>
 
 <main id="main"></main>
 
 <div class="lb" id="lb">
-  <button class="lbx" onclick="clb()">✕</button>
+  <button class="lbx" onclick="clb()">&#10005;</button>
   <img id="lbi" src="" alt="">
 </div>
 
-<div style="position:fixed;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:50;padding:0 10px">
-  <button class="fab" style="background:#2d2926;flex:1;justify-content:center;max-width:150px" onclick="expKunde()">📄 Bericht</button>
+<div style="position:fixed;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:10px;z-index:50;padding:0 12px">
+  <button class="fab" style="background:#2d2926;flex:1;justify-content:center;max-width:160px" onclick="expKunde()">&#128196; Kundenbericht</button>
 </div>
 
 <input type="file" id="fi" accept="image/*" capture="environment" style="display:none">
@@ -131,232 +167,231 @@ main{padding:0;}
 <script>
 const DATA = [{"pos":"01.","bez":"Putzmittelraum","label":"Putz","subsections":[{"pos":"01.00.","bez":"Putzmittelraum","items":[{"pos":"1.01","menge":"1","einh":"Stk","bez":"Putzmittelschrank","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"1.02","menge":"1","einh":"Stk","bez":"HWB-Ausguss-Kombination","fabrikat":"Rieber","typ":"HAK"},{"pos":"1.03","menge":"2","einh":"Stk","bez":"Desinfektionsspender","fabrikat":"Jantex","typ":"GJ034"},{"pos":"1.04","menge":"1","einh":"Stk","bez":"Handtuchspender","fabrikat":"Jantex","typ":"GJ033"},{"pos":"1.05","menge":"1","einh":"Stk","bez":"Hygienecenter","fabrikat":"Kohlhoff","typ":"HC-Primus II"}]}]},{"pos":"02.","bez":"Lager","label":"Lager","subsections":[{"pos":"02.01.","bez":"Kühlzelle","items":[{"pos":"2.01","menge":"1","einh":"Stk","bez":"Kombi-Kühlzelle","fabrikat":"Narr","typ":"Vario Cell 100"},{"pos":"2.02","menge":"2","einh":"Stk","bez":"Kühlzellen-Drehtür","fabrikat":"Narr","typ":"Drehtür"},{"pos":"2.03","menge":"1","einh":"Stk","bez":"Kühlaggregat","fabrikat":"Müller & Jenniges","typ":"KT"}]},{"pos":"02.02.","bez":"Regale","items":[{"pos":"2.04","menge":"2","einh":"Stk","bez":"Regalsystem 1500x500","fabrikat":"Kohlhoff","typ":"ERS"},{"pos":"2.05","menge":"1","einh":"Stk","bez":"Regalsystem 2775x600","fabrikat":"Kohlhoff","typ":"ERS"}]},{"pos":"02.03.","bez":"Kühl-/Tiefkühlschränke","items":[{"pos":"2.06","menge":"1","einh":"Stk","bez":"Umluft-Kühlschrank GN","fabrikat":"Cool Compact","typ":"HKMN041"},{"pos":"2.07","menge":"1","einh":"Stk","bez":"Umluft-Tiefkühlschrank GN","fabrikat":"Cool Compact","typ":"HKMT041"}]}]},{"pos":"03.","bez":"Spülküche","label":"Spül","subsections":[{"pos":"03.01.","bez":"Zulauftisch","items":[{"pos":"3.01","menge":"1","einh":"Stk","bez":"Tischplatte 2,0mm","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"3.02","menge":"1","einh":"Stk","bez":"Spülbrause","fabrikat":"KWC","typ":"K24.42.64"}]},{"pos":"03.02.","bez":"Haubenspülmaschine","items":[{"pos":"3.03","menge":"1","einh":"Stk","bez":"Haubenspülmaschine","fabrikat":"Hobart","typ":"AMXT-10B"},{"pos":"3.04","menge":"1","einh":"Stk","bez":"Osmoseanlage","fabrikat":"Hobart","typ":"Hydroline Pure"}]}]},{"pos":"04.","bez":"Vorbereitung","label":"Vorb.","subsections":[{"pos":"04.01.","bez":"Arbeitsschrank (4.01)","items":[{"pos":"4.01","menge":"1","einh":"Stk","bez":"Tischplatte 1614x650","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.02","menge":"1","einh":"Stk","bez":"HWB Arbeitsschrank","fabrikat":"Novameta","typ":"Sonderbau"}]},{"pos":"04.02.","bez":"Spülenschrank (4.05)","items":[{"pos":"4.03","menge":"1","einh":"Stk","bez":"Tischplatte 1940x700","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.04","menge":"1","einh":"Stk","bez":"Spülenmodul 2 Becken","fabrikat":"Novameta","typ":"Sonderbau"}]},{"pos":"04.03.","bez":"Großarbeitsschrank (4.07)","items":[{"pos":"4.05","menge":"1","einh":"Stk","bez":"Tischplatte 3160x700","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.06","menge":"1","einh":"Stk","bez":"Spülbecken 400x500","fabrikat":"Novameta","typ":"Sonderbau"}]}]},{"pos":"05.","bez":"Zubereitung","label":"Zub.","subsections":[{"pos":"05.01.","bez":"Dämpfer & Unterschränke","items":[{"pos":"5.01","menge":"1","einh":"Stk","bez":"Elektro-Kombi-Dämpfer 10x","fabrikat":"Hobart","typ":"HICS101E"},{"pos":"5.02","menge":"1","einh":"Stk","bez":"Unterschrank fahrbar","fabrikat":"Hobart","typ":"ACIC101PT"}]},{"pos":"05.02.","bez":"Herd & Gargerät","items":[{"pos":"5.03","menge":"1","einh":"Stk","bez":"Ceranherd","fabrikat":"Berner","typ":"BS4CEQT"},{"pos":"5.04","menge":"1","einh":"Stk","bez":"Multifunktionales Gargerät","fabrikat":"Hobart","typ":"HBPT10HE"}]}]},{"pos":"06.","bez":"Ausgabe","label":"Ausg.","subsections":[{"pos":"06.01.","bez":"Speisenausgabe","items":[{"pos":"6.01","menge":"1","einh":"Stk","bez":"Kühlvitrine steckerfertig","fabrikat":"NordCap","typ":"Gastro GE-112"},{"pos":"6.02","menge":"1","einh":"Stk","bez":"Wärmebecken 4x GN 1/1","fabrikat":"Novameta","typ":"Sonderbau"}]}]},{"pos":"07.","bez":"Fahrbarte Geräte","label":"Fahr.","subsections":[{"pos":"07.01.","bez":"Tellerstapler & Besteckwagen","items":[{"pos":"7.01","menge":"1","einh":"Stk","bez":"Tellerstapler beheizt","fabrikat":"Hupfer","typ":"TE/H-19-26"},{"pos":"7.02","menge":"2","einh":"Stk","bez":"Besteckwagen Plattform","fabrikat":"Hupfer","typ":"BTW 4GN"}]},{"pos":"07.02.","bez":"Abräumwagen & Stapler","items":[{"pos":"7.03","menge":"3","einh":"Stk","bez":"Abräumwagen 1000x600","fabrikat":"Hupfer","typ":"SARW-10x6"},{"pos":"7.04","menge":"1","einh":"Stk","bez":"Geschirrstapler unbeheizt","fabrikat":"Hupfer","typ":"UST-57-28"}]}]}];
 
-const ST = {};
-let ACT = DATA[0].pos;
-let FPOS = null;
+const ST={};
+const NOTE_TIMERS={};
+function sp(p){return p.replace(/\./g,'_');}
 
-function sp(p) { return p.replace(/\./g,'_'); }
-function gs(p) {
-  if(!ST[p]) ST[p] = {g:false, m:false, a:false, ib:false, ew:false, fotos:[]};
-  return ST[p];
+const SAVE_TIMERS={};
+function savePos(pos) {
+  if(SAVE_TIMERS[pos]) clearTimeout(SAVE_TIMERS[pos]);
+  SAVE_TIMERS[pos] = setTimeout(() => {
+    const s = gs(pos);
+    fetch(SB_URL + '/rest/v1/positionen_mensa_ggs', {
+      method: 'POST',
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates,return=minimal'
+      },
+      body: JSON.stringify({
+        pos: pos,
+        g: s.g, m: s.m, a: s.a, ib: s.ib, ew: s.ew,
+        note: s.note,
+        fotos: JSON.stringify(s.fotos),
+        updated_at: new Date().toISOString()
+      })
+    })
+    .catch(e => console.warn('Speichern fehlgeschlagen:', e));
+    delete SAVE_TIMERS[pos];
+  }, 400);
 }
 
-function ist(p) {
-  const s = gs(p);
-  if(s.g || s.m || s.a || s.ib || s.ew || s.fotos.length) {
-    const n = [s.g, s.m, s.a, s.ib, s.ew].filter(Boolean).length;
-    return n === 5 ? 'done' : 'part';
-  }
-  return 'open';
-}
+let ACT=DATA[0].pos, FPOS=null;
 
-function tc(pos, f) {
-  const s = gs(pos);
-  s[f] = !s[f];
-  localStorage.setItem('pos_' + pos, JSON.stringify(s));
-  
-  const id = sp(pos);
-  const el = document.getElementById('K'+f+id);
-  if(el) {
-    el.classList.toggle('on', s[f]);
-    el.querySelector('.cki').innerHTML = s[f] ? '✓' : '○';
-  }
-  
-  rc(pos);
-  upStats();
-}
+function gs(p){if(!ST[p])ST[p]={g:false,m:false,a:false,ib:false,ew:false,fotos:[],note:''};return ST[p];}
+function ist(p){const s=gs(p);if(s.g||s.m||s.a||s.ib||s.ew||s.fotos.length||s.note){const n=[s.g,s.m,s.a,s.ib,s.ew].filter(Boolean).length;return n===5?'done':'part';}return 'open';}
 
-function rc(pos) {
-  const id = sp(pos);
-  const st = ist(pos);
-  const c = document.getElementById('C'+id);
-  if(c) c.className = 'card' + (st !== 'open' ? ' ' + st : '');
-  updProg(pos);
-}
-
-function updProg(pos) {
-  DATA.forEach(sec => sec.subsections.forEach(sub => {
-    if(!sub.items.some(i => i.pos === pos)) return;
-    const sid = sp(sub.pos);
-    const dn = sub.items.filter(i => ist(i.pos) === 'done').length;
-    const el = document.getElementById('P'+sid);
-    if(el) el.textContent = dn > 0 ? dn + '/' + sub.items.length : '';
-  }));
-}
-
-function upStats() {
-  let tot = 0, dn = 0;
-  DATA.forEach(s => s.subsections.forEach(sub => sub.items.forEach(item => {
-    tot++;
-    if(ist(item.pos) === 'done') dn++;
-  })));
-  document.getElementById('cD').textContent = dn;
-  document.getElementById('cO').textContent = tot - dn;
-  document.getElementById('cT').textContent = tot;
-}
-
-function buildTabs() {
-  const w = document.getElementById('tabs');
-  w.innerHTML = '';
-  DATA.forEach(sec => {
-    const tot = sec.subsections.reduce((a,s) => a + s.items.length, 0);
-    const b = document.createElement('button');
-    b.className = 'tab' + (sec.pos === ACT ? ' on' : '');
-    b.dataset.p = sec.pos;
-    b.innerHTML = sec.label + '<span class="n">' + tot + '</span>';
-    b.onclick = () => swTab(sec.pos);
+function buildTabs(){
+  const w=document.getElementById('tabs');
+  w.innerHTML='';
+  DATA.forEach(sec=>{
+    const tot=sec.subsections.reduce((a,s)=>a+s.items.length,0);
+    const b=document.createElement('button');
+    b.className='tab'+(sec.pos===ACT?' on':'');
+    b.dataset.p=sec.pos;
+    b.innerHTML=sec.label+'<span class="n">('+tot+')</span>';
+    b.onclick=()=>swTab(sec.pos);
     w.appendChild(b);
   });
 }
 
-function swTab(p) {
-  ACT = p;
-  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.p === p));
-  document.querySelectorAll('.panel').forEach(pn => pn.classList.toggle('on', pn.dataset.p === p));
+function swTab(p){
+  ACT=p;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.p===p));
+  document.querySelectorAll('.panel').forEach(pn=>pn.classList.toggle('on',pn.dataset.p===p));
+  restoreUI();
 }
 
-function buildPanels() {
-  const main = document.getElementById('main');
-  main.innerHTML = '';
-  DATA.forEach(sec => {
-    const panel = document.createElement('div');
-    panel.className = 'panel' + (sec.pos === ACT ? ' on' : '');
-    panel.dataset.p = sec.pos;
-    
-    sec.subsections.forEach(sub => {
-      const div = document.createElement('div');
-      div.className = 'bblock';
-      const sid = sp(sub.pos);
-      
-      let cards = '';
-      sub.items.forEach(item => {
-        const id = sp(item.pos);
-        cards += `<div class="card" id="C${id}">
+function buildPanels(){
+  const main=document.getElementById('main');
+  main.innerHTML='';
+  DATA.forEach(sec=>{
+    const panel=document.createElement('div');
+    panel.className='panel'+(sec.pos===ACT?' on':'');
+    panel.dataset.p=sec.pos;
+    sec.subsections.forEach(sub=>{
+      const div=document.createElement('div');
+      div.className='bblock';
+      const sid=sp(sub.pos);
+      let cards='';
+      sub.items.forEach(item=>{
+        const id=sp(item.pos);
+        cards+=`<div class="card" id="C${id}">
   <div class="ih">
     <span class="pb">${item.pos}</span>
     <div class="ii">
-      <div class="ibez">${item.bez}</div>
-      <div class="imet">${item.fabrikat ? '🏭 ' + item.fabrikat : ''}${item.typ ? ' 📋 ' + item.typ : ''}</div>
+      <div class="ibez">${item.bez.trim()}</div>
+      <div class="imet">${item.fabrikat?'&#127981; '+item.fabrikat.trim():''}${item.typ?' &nbsp;&#128203; '+item.typ.trim():''}</div>
     </div>
+    <div class="img">${item.menge} ${item.einh}</div>
   </div>
   <div class="crow">
-    <div class="ck" id="Kg${id}" onclick="tc('${item.pos}','g')"><span class="cki">○</span>Gel.</div>
-    <div class="ck" id="Km${id}" onclick="tc('${item.pos}','m')"><span class="cki">○</span>Mon.</div>
-    <div class="ck" id="Ka${id}" onclick="tc('${item.pos}','a')"><span class="cki">○</span>Ang.</div>
-    <div class="ck ck-ib" id="Kib${id}" onclick="tc('${item.pos}','ib')"><span class="cki">○</span>IB</div>
-    <div class="ck ck-ew" id="Kew${id}" onclick="tc('${item.pos}','ew')"><span class="cki">○</span>EW</div>
+    <div class="ck" id="Kg${id}" onclick="tc('${item.pos}','g')"><span class="cki">&#9675;</span>&nbsp;Geliefert</div>
+    <div class="ck" id="Km${id}" onclick="tc('${item.pos}','m')"><span class="cki">&#9675;</span>&nbsp;Montiert</div>
+    <div class="ck" id="Ka${id}" onclick="tc('${item.pos}','a')"><span class="cki">&#9675;</span>&nbsp;Angeschlossen</div>
+    <div class="ck ck-ib" id="Kib${id}" onclick="tc('${item.pos}','ib')"><span class="cki">&#9675;</span>&nbsp;Inbetriebnahme erfolgt</div>
+    <div class="ck ck-ew" id="Kew${id}" onclick="tc('${item.pos}','ew')"><span class="cki">&#9675;</span>&nbsp;Eingewiesen</div>
   </div>
-  <button class="fbtn" id="FB${id}" onclick="trf('${item.pos}')">📷</button>
-  <div class="fgrid" id="FG${id}"></div>
+  <div class="fsec">
+    <button class="fbtn" id="FB${id}" onclick="trf('${item.pos}')">&#128247; Foto</button>
+    <div class="fgrid" id="FG${id}"></div>
+  </div>
+  <textarea class="anm" rows="1" placeholder="Anmerkung &#8230;" oninput="autoR(this);gs('${item.pos}').note=this.value;rc('${item.pos}');clearTimeout(NOTE_TIMERS['${item.pos}']);NOTE_TIMERS['${item.pos}']=setTimeout(()=>savePos('${item.pos}'),1500)"></textarea>
 </div>`;
       });
-      
-      div.innerHTML = `<div class="bhdr" onclick="tgB(this)">
+      div.innerHTML=`<div class="bhdr" onclick="tgB(this)">
   <span class="bpos">${sub.pos}</span>
   <h3>${sub.bez}</h3>
-  <span class="bcnt">${sub.items.length}</span>
+  <span class="bcnt">${sub.items.length}&nbsp;Pos.</span>
   <span class="bprog" id="P${sid}"></span>
-  <span class="btog cl">▼</span>
+  <span class="btog cl">&#9660;</span>
 </div>
 <div class="ilist hid" id="L${sid}">${cards}</div>`;
-      
       panel.appendChild(div);
     });
-    
     main.appendChild(panel);
   });
 }
 
-function tgB(h) {
-  const l = h.nextElementSibling;
-  const t = h.querySelector('.btog');
-  const isClosed = l.classList.contains('hid');
-  l.classList.toggle('hid', !isClosed);
-  t.classList.toggle('cl', !isClosed);
+function tgB(h){
+  const l=h.nextElementSibling;
+  const t=h.querySelector('.btog');
+  const isClosed=l.classList.contains('hid');
+  l.classList.toggle('hid',!isClosed);
+  t.classList.toggle('cl',!isClosed);
 }
 
-function trf(pos) {
-  FPOS = pos;
-  const fi = document.getElementById('fi');
-  fi.value = '';
-  fi.click();
+function tc(pos,f){
+  const s=gs(pos);
+  s[f]=!s[f];
+  const id=sp(pos);
+  const el=document.getElementById('K'+f+id);
+  if(el){el.classList.toggle('on',s[f]);el.querySelector('.cki').innerHTML=s[f]?'&#10003;':'&#9675;';}
+  rc(pos);upStats();savePos(pos);
 }
 
-function updFG(pos) {
-  const id = sp(pos);
-  const s = gs(pos);
-  const g = document.getElementById('FG'+id);
-  const b = document.getElementById('FB'+id);
-  if(g) {
-    g.innerHTML = s.fotos.map((src,i) => `<div class="fth" onclick="olb('${pos}',${i})"><img src="${src}"><button class="fdel" onclick="event.stopPropagation();df('${pos}',${i})">✕</button></div>`).join('');
-  }
-  if(b) {
-    b.innerHTML = '📷' + (s.fotos.length ? ` <span class="fcnt">${s.fotos.length}</span>` : '');
-  }
+function rc(pos){
+  const id=sp(pos);
+  const st=ist(pos);
+  const c=document.getElementById('C'+id);
+  if(c)c.className='card'+( st!=='open'?' '+st:'');
+  updProg(pos);
 }
 
-function df(pos, i) {
-  gs(pos).fotos.splice(i, 1);
-  localStorage.setItem('pos_' + pos, JSON.stringify(gs(pos)));
-  updFG(pos);
-  rc(pos);
-  upStats();
+function updProg(pos){
+  DATA.forEach(sec=>sec.subsections.forEach(sub=>{
+    if(!sub.items.some(i=>i.pos===pos))return;
+    const sid=sp(sub.pos);
+    const dn=sub.items.filter(i=>ist(i.pos)==='done').length;
+    const el=document.getElementById('P'+sid);
+    if(el)el.textContent=dn>0?dn+'/'+sub.items.length+' ✓':'';
+  }));
 }
 
-function olb(pos, i) {
-  document.getElementById('lbi').src = gs(pos).fotos[i];
-  document.getElementById('lb').classList.add('on');
-}
+function trf(pos){FPOS=pos;const fi=document.getElementById('fi');fi.value='';fi.click();}
 
-function clb() {
-  document.getElementById('lb').classList.remove('on');
-}
-
-document.getElementById('lb').addEventListener('click', e => {
-  if(e.target === e.currentTarget) clb();
-});
-
-document.getElementById('fi').addEventListener('change', async function(e) {
-  const file = e.target.files[0];
-  if(!file || !FPOS) return;
-  
-  const reader = new FileReader();
-  reader.onload = (ev) => {
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      let w = img.width, h = img.height;
-      const maxW = 600;
-      if(w > maxW) { h = h * maxW / w; w = maxW; }
-      canvas.width = w;
-      canvas.height = h;
-      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      const base64 = canvas.toDataURL('image/jpeg', 0.75);
-      
-      gs(FPOS).fotos.push(base64);
-      localStorage.setItem('pos_' + FPOS, JSON.stringify(gs(FPOS)));
-      updFG(FPOS);
-      rc(FPOS);
-      upStats();
+function resizeImage(file, maxWidth) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > maxWidth) { h = h * maxWidth / w; w = maxWidth; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob((blob) => resolve(blob), 'image/jpeg', 0.85);
+      };
+      img.src = e.target.result;
     };
-    img.src = ev.target.result;
-  };
-  reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('fi').addEventListener('change',async function(e){
+  const file=e.target.files[0];
+  if(!file||!FPOS)return;
+  try {
+    const resized = await resizeImage(file, 1200);
+    const fname = FPOS.replace(/\./g,'_') + '_' + Date.now() + '.jpg';
+    const res = await fetch(SB_URL+'/storage/v1/object/fotos_mensa_ggs/'+fname, {
+      method:'POST',
+      headers:{
+        'apikey':SB_KEY,
+        'Authorization':'Bearer '+SB_KEY,
+        'Content-Type':'image/jpeg',
+        'x-upsert':'true'
+      },
+      body:resized
+    });
+    if(!res.ok) throw new Error(await res.text());
+    const publicUrl = SB_URL+'/storage/v1/object/public/fotos_mensa_ggs/'+fname+'?t='+Date.now();
+    gs(FPOS).fotos.push(publicUrl);
+    await saveFotos(FPOS);
+    updFG(FPOS);rc(FPOS);upStats();
+  } catch(e) {
+    const r=new FileReader();
+    r.onload=ev=>{gs(FPOS).fotos.push(ev.target.result);updFG(FPOS);rc(FPOS);upStats();};
+    r.readAsDataURL(file);
+    console.warn('Supabase Upload fehlgeschlagen:', e);
+  }
 });
 
-function loadState() {
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key && key.startsWith('pos_')) {
-      const pos = key.substring(4);
-      try {
-        ST[pos] = JSON.parse(localStorage.getItem(key));
-      } catch(e) {}
-    }
-  }
-  restoreUI();
-  upStats();
+function updFG(pos){
+  const id=sp(pos);const s=gs(pos);
+  const g=document.getElementById('FG'+id);
+  const b=document.getElementById('FB'+id);
+  if(g)g.innerHTML=s.fotos.map((src,i)=>`<div class="fth" onclick="olb('${pos}',${i})"><img src="${src}"><button class="fdel" onclick="event.stopPropagation();df('${pos}',${i})">&#10005;</button></div>`).join('');
+  if(b)b.innerHTML='&#128247; Foto'+(s.fotos.length?` <span class="fcnt">${s.fotos.length}</span>`:'');
 }
+
+function df(pos,i){gs(pos).fotos.splice(i,1);updFG(pos);rc(pos);upStats();savePos(pos);}
+
+function olb(pos,i){document.getElementById('lbi').src=gs(pos).fotos[i];document.getElementById('lb').classList.add('on');}
+function clb(){document.getElementById('lb').classList.remove('on');}
+document.getElementById('lb').addEventListener('click',e=>{if(e.target===e.currentTarget)clb();});
+
+function upStats(){
+  let tot=0,dn=0;
+  DATA.forEach(s=>s.subsections.forEach(sub=>sub.items.forEach(item=>{tot++;if(ist(item.pos)==='done')dn++;})));
+  document.getElementById('cD').textContent=dn;
+  document.getElementById('cO').textContent=tot-dn;
+  document.getElementById('cT').textContent=tot;
+}
+
+function applyF(){
+  const q=document.getElementById('srch').value.toLowerCase().trim();
+  document.querySelectorAll('.card').forEach(c=>{
+    const bez=c.querySelector('.ibez')?.textContent.toLowerCase()||'';
+    const met=c.querySelector('.imet')?.textContent.toLowerCase()||'';
+    const rawId=c.id.slice(1).replace(/_/g,'.');
+    const mq=!q||bez.includes(q)||met.includes(q)||rawId.includes(q);
+    c.style.display=mq?'':'none';
+  });
+}
+document.getElementById('srch').addEventListener('input',applyF);
 
 function restoreUI() {
   Object.keys(ST).forEach(pos => {
@@ -367,105 +402,211 @@ function restoreUI() {
       const el = document.getElementById('K'+f+id);
       if(el && s[f]) {
         el.classList.add('on');
-        el.querySelector('.cki').innerHTML = '✓';
+        el.querySelector('.cki').innerHTML = '&#10003;';
       }
     });
     const card = document.getElementById('C'+id);
     const st = ist(pos);
     if(card && st !== 'open') card.className = 'card ' + st;
+    const anm = card ? card.querySelector('.anm') : null;
+    if(anm && s.note) { anm.value = s.note; autoR(anm); }
     if(s.fotos && s.fotos.length) updFG(pos);
     updProg(pos);
   });
   upStats();
 }
 
-function expKunde() {
-  const now = new Date();
-  const d = now.toLocaleDateString('de-DE');
-  let rows = [];
-  DATA.forEach(sec => {
-    sec.subsections.forEach(sub => {
-      sub.items.forEach(item => {
-        const s = gs(item.pos);
-        if(!s.g) return;
+function autoR(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+
+function expKunde(){
+  const now=new Date();
+  const d=now.toLocaleDateString('de-DE');
+  let rows=[];
+  DATA.forEach(sec=>{
+    sec.subsections.forEach(sub=>{
+      sub.items.forEach(item=>{
+        const s=gs(item.pos);
+        if(!s.g)return;
         rows.push({
-          bereich: sec.bez,
-          sub: sub.bez,
-          pos: item.pos,
-          bez: item.bez,
-          fabrikat: item.fabrikat,
-          typ: item.typ,
-          g:s.g, m:s.m, a:s.a, ib:s.ib, ew:s.ew
+          geschoss:sec.label,
+          bereich:sub.bez,
+          pos:item.pos,
+          menge:item.menge,
+          einh:item.einh,
+          bez:item.bez.trim(),
+          fabrikat:item.fabrikat.trim(),
+          typ:item.typ.trim(),
+          g:s.g,m:s.m,a:s.a,ib:s.ib,ew:s.ew,
+          note:s.note
         });
       });
     });
   });
 
-  if(rows.length === 0) {
-    alert('Keine Positionen mit Status Geliefert vorhanden.');
-    return;
-  }
+  if(rows.length===0){alert('Keine Positionen mit Status Geliefert vorhanden.');return;}
 
-  let lastB = '', lastS = '';
-  let tableRows = '';
-  rows.forEach((r,i) => {
-    if(r.bereich !== lastB) {
-      if(lastB !== '') tableRows += '<tr><td colspan="9" style="height:10px;background:#f5f3f0;border:none"></td></tr>';
-      tableRows += `<tr><td colspan="9" style="background:#2d2926;color:#c8a882;font-weight:700;padding:6px 8px;font-size:12px">${r.bereich}</td></tr>`;
-      lastB = r.bereich;
-      lastS = '';
+  let lastG='',lastB='';
+  let tableRows='';
+  rows.forEach((r,i)=>{
+    if(r.geschoss!==lastG){
+      if(lastG!=='')tableRows+='<tr><td colspan="9" style="height:12px;background:#f5f3f0;border:none"></td></tr>';
+      tableRows+=`<tr><td colspan="9" style="background:#2d2926;color:#c8a882;font-weight:700;font-size:13px;padding:8px 10px;letter-spacing:1px">${r.geschoss}: ${DATA.find(s=>s.label===r.geschoss)?.bez||''}</td></tr>`;
+      lastG=r.geschoss; lastB='';
     }
-    if(r.sub !== lastS) {
-      tableRows += `<tr><td colspan="9" style="background:#eeecea;color:#6b5040;font-weight:700;padding:4px 8px;border-left:3px solid #c8a882;font-size:11px">${r.sub}</td></tr>`;
-      lastS = r.sub;
+    if(r.bereich!==lastB){
+      tableRows+=`<tr><td colspan="9" style="background:#eeecea;color:#6b5040;font-weight:700;font-size:12px;padding:5px 10px;border-left:3px solid #c8a882">${r.bereich}</td></tr>`;
+      lastB=r.bereich;
     }
-    const chk = v => v ? '<span style="color:#3a7a3a;font-weight:700">✓</span>' : '–';
-    tableRows += `<tr style="background:${i%2===0?'#fff':'#faf9f7'}">
-      <td style="padding:4px 6px;font-size:10px;color:#9a9a9a">${r.pos}</td>
-      <td style="padding:4px 6px;font-weight:700;font-size:11px">${r.bez}</td>
-      <td style="padding:4px 6px;font-size:10px;color:#6b5040">${r.fabrikat||'-'}</td>
-      <td style="padding:4px 6px;font-size:10px;color:#9a9a9a">${r.typ||'-'}</td>
-      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.g)}</td>
-      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.m)}</td>
-      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.a)}</td>
-      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.ib)}</td>
-      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.ew)}</td>
+    const chk=v=>v?'<span style="color:#3a7a3a;font-weight:700">&#10003;</span>':'<span style="color:#ccc">&#8211;</span>';
+    tableRows+=`<tr style="background:${i%2===0?'#fff':'#faf9f7'}">
+      <td style="padding:5px 8px;font-size:11px;color:#9a9a9a;white-space:nowrap">${r.pos}</td>
+      <td style="padding:5px 8px;font-size:12px;font-weight:700">${r.bez}</td>
+      <td style="padding:5px 8px;font-size:11px;color:#6b5040">${r.fabrikat}</td>
+      <td style="padding:5px 8px;font-size:11px;color:#9a9a9a">${r.typ}</td>
+      <td style="padding:5px 8px;font-size:12px;font-weight:700;text-align:center;white-space:nowrap">${r.menge} ${r.einh}</td>
+      <td style="padding:5px 8px;text-align:center">${chk(r.g)}</td>
+      <td style="padding:5px 8px;text-align:center">${chk(r.m)}</td>
+      <td style="padding:5px 8px;text-align:center">${chk(r.ib)}</td>
+      <td style="padding:5px 8px;text-align:center">${chk(r.ew)}</td>
     </tr>`;
+    if(r.note)tableRows+=`<tr style="background:${i%2===0?'#fff':'#faf9f7'}"><td colspan="9" style="padding:2px 8px 6px 28px;font-size:11px;color:#6b5040;font-style:italic">↳ ${r.note}</td></tr>`;
   });
 
-  const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8">
-<title>Bericht Mensa GGS BG – ${d}</title>
+  const html=`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8">
+<title>Leistungsbericht Mensa GGS – ${d}</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;padding:15px;color:#2d2926;font-size:12px;}
-.kpc{border-bottom:2px solid #6b5040;padding-bottom:10px;margin-bottom:15px;}
-.logo{font-size:18px;font-weight:700}
-h2{font-size:13px;color:#6b5040;margin:0 0 12px;font-weight:400;}
-table{width:100%;border-collapse:collapse;}
-th{background:#2d2926;color:#c8a882;font-size:10px;padding:5px;text-align:left;font-weight:700;}
-td{border-bottom:1px solid #eee;padding:5px;vertical-align:middle;}
-.sig{margin-top:30px;display:flex;gap:40px;}
+body{font-family:Arial Narrow,Arial,sans-serif;margin:0;padding:20px;color:#2d2926;}
+.kpc{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #6b5040;padding-bottom:12px;margin-bottom:20px;}
+.logo{font-size:22px;font-weight:700;letter-spacing:4px;color:#2d2926;}
+.logo small{display:block;font-size:11px;letter-spacing:2px;color:#9a9a9a;font-weight:400;}
+.meta{text-align:right;font-size:12px;color:#9a9a9a;line-height:1.6;}
+.meta strong{display:block;font-size:15px;color:#2d2926;font-weight:700;}
+h2{font-size:14px;color:#6b5040;margin:0 0 16px;font-weight:400;letter-spacing:0.5px;}
+table{width:100%;border-collapse:collapse;font-family:Arial Narrow,Arial,sans-serif;}
+th{background:#2d2926;color:#c8a882;font-size:11px;padding:7px 8px;text-align:left;font-weight:700;letter-spacing:0.5px;}
+th.center{text-align:center;}
+td{border-bottom:1px solid #eeecea;vertical-align:middle;}
+.legend{margin-top:24px;font-size:11px;color:#9a9a9a;display:flex;gap:20px;}
+.legend span{display:flex;align-items:center;gap:5px;}
+.sig{margin-top:40px;display:flex;gap:60px;}
 .sig-box{flex:1;}
-.sig-line{border-top:1px solid #2d2926;padding-top:4px;font-size:10px;color:#999;margin-top:30px;}
+.sig-line{border-top:1px solid #2d2926;padding-top:6px;font-size:11px;color:#9a9a9a;margin-top:40px;}
+@media print{body{padding:10px;}button{display:none!important;}}
 </style></head><body>
-<div class="kpc"><div class="logo">KPC GMBH</div><div style="font-size:11px;color:#999">Mensa GGS – Bergisch Gladbach | ${d}</div></div>
-<h2>Leistungsfeststellung – Gelieferte Positionen</h2>
+<div class="kpc">
+  <div class="logo">KPC <small>GMBH</small></div>
+  <div class="meta"><strong>Leistungsbericht</strong>Projekt: Mensa GGS<br>Datum: ${d}<br>Dok.-Nr.: LB-MGG-${now.toISOString().slice(0,10).replace(/-/g,'')}</div>
+</div>
+<h2>Gelieferte und installierte Positionen – Nachweis Leistungsfeststellung</h2>
 <table>
-<tr><th>Pos</th><th>Bezeichnung</th><th>Fabrikat</th><th>Typ</th><th>G</th><th>M</th><th>A</th><th>IB</th><th>EW</th></tr>
-${tableRows}
+<thead><tr>
+  <th>Pos.-Nr.</th><th>Bezeichnung</th><th>Fabrikat</th><th>Typ</th><th class="center">Menge</th>
+  <th class="center">Geliefert</th><th class="center">Montiert</th><th class="center">Angeschlossen</th><th class="center">Inbetriebnahme / Eingewiesen</th>
+</tr></thead>
+<tbody>${tableRows}</tbody>
 </table>
-<div style="margin-top:20px;font-size:10px;color:#999">Gesamt: ${rows.length} Positionen erfasst</div>
-<div class="sig"><div class="sig-box"><div class="sig-line">KPC GmbH</div></div><div class="sig-box"><div class="sig-line">Auftraggeber</div></div></div>
+<div class="legend">
+  <span><strong style="color:#3a7a3a">✓</strong> = bestätigt</span>
+  <span><strong style="color:#ccc">–</strong> = ausstehend</span>
+  <span>Gesamt erfasst: <strong>${rows.length} Positionen</strong></span>
+</div>
+<div class="sig">
+  <div class="sig-box"><div class="sig-line">Datum / Unterschrift KPC GmbH</div></div>
+  <div class="sig-box"><div class="sig-line">Datum / Unterschrift Auftraggeber</div></div>
+</div>
+<div style="margin-top:16px;text-align:center">
+  <button onclick="window.print()" style="padding:10px 24px;background:#6b5040;color:#fff;border:none;border-radius:4px;font-size:13px;cursor:pointer;font-family:Arial Narrow,Arial,sans-serif">Drucken / Als PDF speichern</button>
+</div>
 </body></html>`;
 
-  const w = window.open('','_blank');
+  const w=window.open('','_blank');
   w.document.write(html);
   w.document.close();
 }
+
+const SB_URL = 'https://ngjibvobpuqzralnpjfz.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5namlibm9icHVxenJhbG5wamZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTMzMTg0NTgsImV4cCI6MjAwODg5NDQ1OH0.NqvPR_zxTVmMqqZHPM6cFVgKn2r9rYLfn1cYMmm3wFY';
+
+function saveFotos(pos) {
+  const s = gs(pos);
+  const encoded = encodeURIComponent(pos);
+  fetch(SB_URL + '/rest/v1/positionen_mensa_ggs?pos=eq.' + encoded, {
+    method: 'PATCH',
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      fotos: JSON.stringify(s.fotos),
+      updated_at: new Date().toISOString()
+    })
+  }).catch(e => console.warn('Foto-URLs speichern fehlgeschlagen:', e));
+}
+
+async function loadState() {
+  try {
+    const data = await fetch(SB_URL + '/rest/v1/positionen_mensa_ggs?select=*', {
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY
+      }
+    }).then(r => r.json());
+    if (data && Array.isArray(data)) {
+      data.forEach(row => {
+        let fotos = [];
+        try { fotos = row.fotos ? JSON.parse(row.fotos) : []; } catch(e) {}
+        ST[row.pos] = {
+          g: row.g||false, m: row.m||false, a: row.a||false,
+          ib: row.ib||false, ew: row.ew||false,
+          note: row.note||'', fotos: fotos
+        };
+      });
+    }
+  } catch(e) {
+    console.warn('Laden fehlgeschlagen:', e);
+  }
+  restoreUI();
+  upStats();
+}
+
+setInterval(async () => {
+  try {
+    const data = await fetch(SB_URL + '/rest/v1/positionen_mensa_ggs?select=*', {
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': 'Bearer ' + SB_KEY
+      }
+    }).then(r => r.json());
+    if (!data || !Array.isArray(data)) return;
+    let changed = false;
+    data.forEach(row => {
+      const cur = ST[row.pos];
+      if (!cur || cur.g!==row.g || cur.m!==row.m || cur.a!==row.a ||
+          cur.ib!==row.ib || cur.ew!==row.ew || cur.note!==row.note) {
+        ST[row.pos] = { g:row.g||false, m:row.m||false, a:row.a||false,
+          ib:row.ib||false, ew:row.ew||false, note:row.note||'', fotos:cur?cur.fotos:[] };
+        changed = true;
+        const id = row.pos.replace(/\./g,'_');
+        const fields = ['g','m','a','ib','ew'];
+        fields.forEach(f => {
+          const el = document.getElementById('K'+f+id);
+          if(el) { el.classList.toggle('on', ST[row.pos][f]); el.querySelector('.cki').innerHTML = ST[row.pos][f]?'&#10003;':'&#9675;'; }
+        });
+        const card = document.getElementById('C'+id);
+        const st = ist(row.pos);
+        if(card) card.className = 'card'+(st!=='open'?' '+st:'');
+        updProg(row.pos);
+      }
+    });
+    if(changed) { upStats(); restoreUI(); }
+  } catch(e) {}
+}, 30000);
 
 buildTabs();
 buildPanels();
 loadState();
 </script>
-
 </body>
 </html>
