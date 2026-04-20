@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Leistungsfeststellung – Mensa GGS Bergisch Gladbach</title>
+<style>
+:root {
+  --bg:#f5f3f0; --bg2:#eeecea; --anthrazit:#2d2926; --braun:#6b5040;
+  --accent:#c8a882; --accent2:#9a9a9a; --white:#fff;
+  --green:#3a7a3a; --gl:#e8f4e8; --yl:#fef9e7; --border:#d4cdc6;
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;}
+body{font-family:Arial Narrow,Arial,sans-serif;background:var(--bg);color:var(--anthrazit);font-size:14px;}
+header{background:var(--anthrazit);position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.3);}
+.h-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px 7px;border-bottom:2px solid var(--braun);}
+.logo{font-weight:700;font-size:15px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;}
+.logo small{display:block;color:var(--accent2);font-weight:400;font-size:9px;letter-spacing:1px;}
+.proj{font-size:11px;color:var(--accent2);text-align:right;line-height:1.3;}
+.proj strong{display:block;color:#fff;font-size:12px;font-weight:700;}
+.tabs{display:flex;overflow-x:auto;background:#1e1b18;scrollbar-width:none;gap:0;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:10px 12px;background:none;border:none;border-bottom:3px solid transparent;
+  color:var(--accent2);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;}
+.tab.on{color:var(--accent);border-bottom-color:var(--accent);background:rgba(255,255,255,.04);}
+.tab .n{font-size:9px;font-weight:400;margin-left:2px;}
+.fbar{background:var(--anthrazit);padding:6px 10px;display:flex;gap:5px;}
+.sw{position:relative;flex:1;}
+.sw input{width:100%;padding:6px 8px 6px 24px;border-radius:var(--r);border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);color:#fff;font-size:12px;}
+.sw .si{position:absolute;left:7px;top:50%;transform:translateY(-50%);color:var(--accent2);font-size:11px;}
+.sbar{background:var(--braun);padding:4px 10px;display:flex;gap:10px;font-size:10px;color:rgba(255,255,255,.85);}
+.sp{display:flex;align-items:center;gap:3px;}
+.sd{width:6px;height:6px;border-radius:50%;}
+.dok{background:#5cb85c;} .dop{background:#e8aa40;}
+.sp strong{color:#fff;font-size:11px;}
+main{padding:0;}
+.panel{display:none;padding-bottom:60px;}
+.panel.on{display:block;}
+.bblock{background:#fff;margin:8px 0 0;}
+.bhdr{background:var(--bg2);padding:8px 10px;display:flex;align-items:center;
+  border-left:3px solid var(--accent);cursor:pointer;user-select:none;gap:5px;}
+.bhdr h3{font-size:12px;font-weight:700;color:var(--braun);flex:1;margin:0;}
+.bpos{font-size:9px;color:var(--accent2);}
+.bcnt{font-size:9px;color:var(--accent2);}
+.bprog{font-size:9px;font-weight:700;color:var(--green);text-align:right;min-width:35px;}
+.btog{font-size:10px;opacity:.4;transition:transform .18s;}
+.btog.cl{transform:rotate(-90deg);}
+.ilist{display:block;}
+.ilist.hid{display:none;}
+.card{border-bottom:1px solid var(--border);padding:8px 10px;}
+.card:last-child{border-bottom:none;}
+.card.done{background:var(--gl);}
+.card.part{background:var(--yl);}
+.ih{display:flex;align-items:flex-start;gap:6px;margin-bottom:6px;}
+.pb{background:var(--anthrazit);color:var(--accent);font-size:8px;font-weight:700;
+  padding:1px 4px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.ii{flex:1;min-width:0;}
+.ibez{font-size:13px;font-weight:700;color:var(--anthrazit);line-height:1.2;}
+.imet{font-size:10px;color:var(--accent2);margin-top:1px;display:flex;gap:6px;flex-wrap:wrap;}
+.img{font-size:11px;font-weight:700;color:var(--braun);white-space:nowrap;}
+.crow{display:flex;gap:4px;flex-wrap:wrap;}
+.ck{display:flex;align-items:center;gap:3px;padding:4px 9px;border-radius:16px;
+  border:1.2px solid var(--border);cursor:pointer;font-size:11px;font-weight:600;
+  background:var(--bg);color:var(--anthrazit);touch-action:manipulation;transition:all .12s;user-select:none;}
+.ck:active{transform:scale(.95);}
+.ck.on{border-color:var(--green);background:var(--green);color:#fff;}
+.ck-ib.on{border-color:#5b4c8a;background:#5b4c8a;}
+.ck-ew.on{border-color:#1a6b6b;background:#1a6b6b;}
+.cki{font-size:11px;}
+.fbtn{display:inline-flex;align-items:center;gap:4px;padding:5px 11px;
+  background:var(--anthrazit);color:#fff;border-radius:16px;font-size:11px;font-weight:700;
+  cursor:pointer;border:none;margin-top:6px;font-family:Arial Narrow,Arial,sans-serif;}
+.fbtn:active{background:var(--braun);}
+.fcnt{background:var(--accent);color:var(--anthrazit);font-size:9px;padding:0 4px;border-radius:8px;font-weight:700;}
+.fgrid{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px;}
+.fth{position:relative;width:60px;height:60px;border-radius:4px;overflow:hidden;
+  border:2px solid var(--border);cursor:pointer;flex-shrink:0;}
+.fth img{width:100%;height:100%;object-fit:cover;}
+.fdel{position:absolute;top:1px;right:1px;background:rgba(139,34,34,.9);color:#fff;
+  border:none;border-radius:50%;width:18px;height:18px;font-size:10px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.fab{background:var(--braun);color:#fff;border:none;border-radius:24px;padding:9px 15px;font-size:12px;font-weight:700;
+  box-shadow:0 4px 16px rgba(107,80,64,.4);cursor:pointer;display:flex;align-items:center;gap:6px;z-index:50;}
+.fab:active{transform:scale(.97);}
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:999;
+  align-items:center;justify-content:center;}
+.lb.on{display:flex;}
+.lb img{max-width:94vw;max-height:85vh;border-radius:6px;object-fit:contain;}
+.lbx{position:fixed;top:10px;right:10px;background:rgba(255,255,255,.15);color:#fff;
+  border:none;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-top">
+    <div class="logo">KPC <small>GMBH</small></div>
+    <div class="proj"><strong>Mensa GGS</strong>Bergisch Gladbach</div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="fbar">
+    <div class="sw">
+      <span class="si">🔍</span>
+      <input type="text" id="srch" placeholder="Suche...">
+    </div>
+  </div>
+  <div class="sbar">
+    <span class="sp"><span class="sd dok"></span>Fertig: <strong id="cD">0</strong></span>
+    <span class="sp"><span class="sd dop"></span>Offen: <strong id="cO">0</strong></span>
+    <span class="sp">Summe: <strong id="cT">0</strong></span>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<div class="lb" id="lb">
+  <button class="lbx" onclick="clb()">✕</button>
+  <img id="lbi" src="" alt="">
+</div>
+
+<div style="position:fixed;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:50;padding:0 10px">
+  <button class="fab" style="background:#2d2926;flex:1;justify-content:center;max-width:150px" onclick="expKunde()">📄 Bericht</button>
+</div>
+
+<input type="file" id="fi" accept="image/*" capture="environment" style="display:none">
+
+<script>
+const DATA = [{"pos":"01.","bez":"Putzmittelraum","label":"Putz","subsections":[{"pos":"01.00.","bez":"Putzmittelraum","items":[{"pos":"1.01","menge":"1","einh":"Stk","bez":"Putzmittelschrank","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"1.02","menge":"1","einh":"Stk","bez":"HWB-Ausguss-Kombination","fabrikat":"Rieber","typ":"HAK"},{"pos":"1.03","menge":"2","einh":"Stk","bez":"Desinfektionsspender","fabrikat":"Jantex","typ":"GJ034"},{"pos":"1.04","menge":"1","einh":"Stk","bez":"Handtuchspender","fabrikat":"Jantex","typ":"GJ033"},{"pos":"1.05","menge":"1","einh":"Stk","bez":"Hygienecenter","fabrikat":"Kohlhoff","typ":"HC-Primus II"}]}]},{"pos":"02.","bez":"Lager","label":"Lager","subsections":[{"pos":"02.01.","bez":"Kühlzelle","items":[{"pos":"2.01","menge":"1","einh":"Stk","bez":"Kombi-Kühlzelle","fabrikat":"Narr","typ":"Vario Cell 100"},{"pos":"2.02","menge":"2","einh":"Stk","bez":"Kühlzellen-Drehtür","fabrikat":"Narr","typ":"Drehtür"},{"pos":"2.03","menge":"1","einh":"Stk","bez":"Kühlaggregat","fabrikat":"Müller & Jenniges","typ":"KT"}]},{"pos":"02.02.","bez":"Regale","items":[{"pos":"2.04","menge":"2","einh":"Stk","bez":"Regalsystem 1500x500","fabrikat":"Kohlhoff","typ":"ERS"},{"pos":"2.05","menge":"1","einh":"Stk","bez":"Regalsystem 2775x600","fabrikat":"Kohlhoff","typ":"ERS"}]},{"pos":"02.03.","bez":"Kühl-/Tiefkühlschränke","items":[{"pos":"2.06","menge":"1","einh":"Stk","bez":"Umluft-Kühlschrank GN","fabrikat":"Cool Compact","typ":"HKMN041"},{"pos":"2.07","menge":"1","einh":"Stk","bez":"Umluft-Tiefkühlschrank GN","fabrikat":"Cool Compact","typ":"HKMT041"}]}]},{"pos":"03.","bez":"Spülküche","label":"Spül","subsections":[{"pos":"03.01.","bez":"Zulauftisch","items":[{"pos":"3.01","menge":"1","einh":"Stk","bez":"Tischplatte 2,0mm","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"3.02","menge":"1","einh":"Stk","bez":"Spülbrause","fabrikat":"KWC","typ":"K24.42.64"}]},{"pos":"03.02.","bez":"Haubenspülmaschine","items":[{"pos":"3.03","menge":"1","einh":"Stk","bez":"Haubenspülmaschine","fabrikat":"Hobart","typ":"AMXT-10B"},{"pos":"3.04","menge":"1","einh":"Stk","bez":"Osmoseanlage","fabrikat":"Hobart","typ":"Hydroline Pure"}]}]},{"pos":"04.","bez":"Vorbereitung","label":"Vorb.","subsections":[{"pos":"04.01.","bez":"Arbeitsschrank (4.01)","items":[{"pos":"4.01","menge":"1","einh":"Stk","bez":"Tischplatte 1614x650","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.02","menge":"1","einh":"Stk","bez":"HWB Arbeitsschrank","fabrikat":"Novameta","typ":"Sonderbau"}]},{"pos":"04.02.","bez":"Spülenschrank (4.05)","items":[{"pos":"4.03","menge":"1","einh":"Stk","bez":"Tischplatte 1940x700","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.04","menge":"1","einh":"Stk","bez":"Spülenmodul 2 Becken","fabrikat":"Novameta","typ":"Sonderbau"}]},{"pos":"04.03.","bez":"Großarbeitsschrank (4.07)","items":[{"pos":"4.05","menge":"1","einh":"Stk","bez":"Tischplatte 3160x700","fabrikat":"Novameta","typ":"Sonderbau"},{"pos":"4.06","menge":"1","einh":"Stk","bez":"Spülbecken 400x500","fabrikat":"Novameta","typ":"Sonderbau"}]}]},{"pos":"05.","bez":"Zubereitung","label":"Zub.","subsections":[{"pos":"05.01.","bez":"Dämpfer & Unterschränke","items":[{"pos":"5.01","menge":"1","einh":"Stk","bez":"Elektro-Kombi-Dämpfer 10x","fabrikat":"Hobart","typ":"HICS101E"},{"pos":"5.02","menge":"1","einh":"Stk","bez":"Unterschrank fahrbar","fabrikat":"Hobart","typ":"ACIC101PT"}]},{"pos":"05.02.","bez":"Herd & Gargerät","items":[{"pos":"5.03","menge":"1","einh":"Stk","bez":"Ceranherd","fabrikat":"Berner","typ":"BS4CEQT"},{"pos":"5.04","menge":"1","einh":"Stk","bez":"Multifunktionales Gargerät","fabrikat":"Hobart","typ":"HBPT10HE"}]}]},{"pos":"06.","bez":"Ausgabe","label":"Ausg.","subsections":[{"pos":"06.01.","bez":"Speisenausgabe","items":[{"pos":"6.01","menge":"1","einh":"Stk","bez":"Kühlvitrine steckerfertig","fabrikat":"NordCap","typ":"Gastro GE-112"},{"pos":"6.02","menge":"1","einh":"Stk","bez":"Wärmebecken 4x GN 1/1","fabrikat":"Novameta","typ":"Sonderbau"}]}]},{"pos":"07.","bez":"Fahrbarte Geräte","label":"Fahr.","subsections":[{"pos":"07.01.","bez":"Tellerstapler & Besteckwagen","items":[{"pos":"7.01","menge":"1","einh":"Stk","bez":"Tellerstapler beheizt","fabrikat":"Hupfer","typ":"TE/H-19-26"},{"pos":"7.02","menge":"2","einh":"Stk","bez":"Besteckwagen Plattform","fabrikat":"Hupfer","typ":"BTW 4GN"}]},{"pos":"07.02.","bez":"Abräumwagen & Stapler","items":[{"pos":"7.03","menge":"3","einh":"Stk","bez":"Abräumwagen 1000x600","fabrikat":"Hupfer","typ":"SARW-10x6"},{"pos":"7.04","menge":"1","einh":"Stk","bez":"Geschirrstapler unbeheizt","fabrikat":"Hupfer","typ":"UST-57-28"}]}]}];
+
+const ST = {};
+let ACT = DATA[0].pos;
+let FPOS = null;
+
+function sp(p) { return p.replace(/\./g,'_'); }
+function gs(p) {
+  if(!ST[p]) ST[p] = {g:false, m:false, a:false, ib:false, ew:false, fotos:[]};
+  return ST[p];
+}
+
+function ist(p) {
+  const s = gs(p);
+  if(s.g || s.m || s.a || s.ib || s.ew || s.fotos.length) {
+    const n = [s.g, s.m, s.a, s.ib, s.ew].filter(Boolean).length;
+    return n === 5 ? 'done' : 'part';
+  }
+  return 'open';
+}
+
+function tc(pos, f) {
+  const s = gs(pos);
+  s[f] = !s[f];
+  localStorage.setItem('pos_' + pos, JSON.stringify(s));
+  
+  const id = sp(pos);
+  const el = document.getElementById('K'+f+id);
+  if(el) {
+    el.classList.toggle('on', s[f]);
+    el.querySelector('.cki').innerHTML = s[f] ? '✓' : '○';
+  }
+  
+  rc(pos);
+  upStats();
+}
+
+function rc(pos) {
+  const id = sp(pos);
+  const st = ist(pos);
+  const c = document.getElementById('C'+id);
+  if(c) c.className = 'card' + (st !== 'open' ? ' ' + st : '');
+  updProg(pos);
+}
+
+function updProg(pos) {
+  DATA.forEach(sec => sec.subsections.forEach(sub => {
+    if(!sub.items.some(i => i.pos === pos)) return;
+    const sid = sp(sub.pos);
+    const dn = sub.items.filter(i => ist(i.pos) === 'done').length;
+    const el = document.getElementById('P'+sid);
+    if(el) el.textContent = dn > 0 ? dn + '/' + sub.items.length : '';
+  }));
+}
+
+function upStats() {
+  let tot = 0, dn = 0;
+  DATA.forEach(s => s.subsections.forEach(sub => sub.items.forEach(item => {
+    tot++;
+    if(ist(item.pos) === 'done') dn++;
+  })));
+  document.getElementById('cD').textContent = dn;
+  document.getElementById('cO').textContent = tot - dn;
+  document.getElementById('cT').textContent = tot;
+}
+
+function buildTabs() {
+  const w = document.getElementById('tabs');
+  w.innerHTML = '';
+  DATA.forEach(sec => {
+    const tot = sec.subsections.reduce((a,s) => a + s.items.length, 0);
+    const b = document.createElement('button');
+    b.className = 'tab' + (sec.pos === ACT ? ' on' : '');
+    b.dataset.p = sec.pos;
+    b.innerHTML = sec.label + '<span class="n">' + tot + '</span>';
+    b.onclick = () => swTab(sec.pos);
+    w.appendChild(b);
+  });
+}
+
+function swTab(p) {
+  ACT = p;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.p === p));
+  document.querySelectorAll('.panel').forEach(pn => pn.classList.toggle('on', pn.dataset.p === p));
+}
+
+function buildPanels() {
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  DATA.forEach(sec => {
+    const panel = document.createElement('div');
+    panel.className = 'panel' + (sec.pos === ACT ? ' on' : '');
+    panel.dataset.p = sec.pos;
+    
+    sec.subsections.forEach(sub => {
+      const div = document.createElement('div');
+      div.className = 'bblock';
+      const sid = sp(sub.pos);
+      
+      let cards = '';
+      sub.items.forEach(item => {
+        const id = sp(item.pos);
+        cards += `<div class="card" id="C${id}">
+  <div class="ih">
+    <span class="pb">${item.pos}</span>
+    <div class="ii">
+      <div class="ibez">${item.bez}</div>
+      <div class="imet">${item.fabrikat ? '🏭 ' + item.fabrikat : ''}${item.typ ? ' 📋 ' + item.typ : ''}</div>
+    </div>
+  </div>
+  <div class="crow">
+    <div class="ck" id="Kg${id}" onclick="tc('${item.pos}','g')"><span class="cki">○</span>Gel.</div>
+    <div class="ck" id="Km${id}" onclick="tc('${item.pos}','m')"><span class="cki">○</span>Mon.</div>
+    <div class="ck" id="Ka${id}" onclick="tc('${item.pos}','a')"><span class="cki">○</span>Ang.</div>
+    <div class="ck ck-ib" id="Kib${id}" onclick="tc('${item.pos}','ib')"><span class="cki">○</span>IB</div>
+    <div class="ck ck-ew" id="Kew${id}" onclick="tc('${item.pos}','ew')"><span class="cki">○</span>EW</div>
+  </div>
+  <button class="fbtn" id="FB${id}" onclick="trf('${item.pos}')">📷</button>
+  <div class="fgrid" id="FG${id}"></div>
+</div>`;
+      });
+      
+      div.innerHTML = `<div class="bhdr" onclick="tgB(this)">
+  <span class="bpos">${sub.pos}</span>
+  <h3>${sub.bez}</h3>
+  <span class="bcnt">${sub.items.length}</span>
+  <span class="bprog" id="P${sid}"></span>
+  <span class="btog cl">▼</span>
+</div>
+<div class="ilist hid" id="L${sid}">${cards}</div>`;
+      
+      panel.appendChild(div);
+    });
+    
+    main.appendChild(panel);
+  });
+}
+
+function tgB(h) {
+  const l = h.nextElementSibling;
+  const t = h.querySelector('.btog');
+  const isClosed = l.classList.contains('hid');
+  l.classList.toggle('hid', !isClosed);
+  t.classList.toggle('cl', !isClosed);
+}
+
+function trf(pos) {
+  FPOS = pos;
+  const fi = document.getElementById('fi');
+  fi.value = '';
+  fi.click();
+}
+
+function updFG(pos) {
+  const id = sp(pos);
+  const s = gs(pos);
+  const g = document.getElementById('FG'+id);
+  const b = document.getElementById('FB'+id);
+  if(g) {
+    g.innerHTML = s.fotos.map((src,i) => `<div class="fth" onclick="olb('${pos}',${i})"><img src="${src}"><button class="fdel" onclick="event.stopPropagation();df('${pos}',${i})">✕</button></div>`).join('');
+  }
+  if(b) {
+    b.innerHTML = '📷' + (s.fotos.length ? ` <span class="fcnt">${s.fotos.length}</span>` : '');
+  }
+}
+
+function df(pos, i) {
+  gs(pos).fotos.splice(i, 1);
+  localStorage.setItem('pos_' + pos, JSON.stringify(gs(pos)));
+  updFG(pos);
+  rc(pos);
+  upStats();
+}
+
+function olb(pos, i) {
+  document.getElementById('lbi').src = gs(pos).fotos[i];
+  document.getElementById('lb').classList.add('on');
+}
+
+function clb() {
+  document.getElementById('lb').classList.remove('on');
+}
+
+document.getElementById('lb').addEventListener('click', e => {
+  if(e.target === e.currentTarget) clb();
+});
+
+document.getElementById('fi').addEventListener('change', async function(e) {
+  const file = e.target.files[0];
+  if(!file || !FPOS) return;
+  
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      const maxW = 600;
+      if(w > maxW) { h = h * maxW / w; w = maxW; }
+      canvas.width = w;
+      canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      const base64 = canvas.toDataURL('image/jpeg', 0.75);
+      
+      gs(FPOS).fotos.push(base64);
+      localStorage.setItem('pos_' + FPOS, JSON.stringify(gs(FPOS)));
+      updFG(FPOS);
+      rc(FPOS);
+      upStats();
+    };
+    img.src = ev.target.result;
+  };
+  reader.readAsDataURL(file);
+});
+
+function loadState() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('pos_')) {
+      const pos = key.substring(4);
+      try {
+        ST[pos] = JSON.parse(localStorage.getItem(key));
+      } catch(e) {}
+    }
+  }
+  restoreUI();
+  upStats();
+}
+
+function restoreUI() {
+  Object.keys(ST).forEach(pos => {
+    const s = ST[pos];
+    const id = sp(pos);
+    const fields = ['g','m','a','ib','ew'];
+    fields.forEach(f => {
+      const el = document.getElementById('K'+f+id);
+      if(el && s[f]) {
+        el.classList.add('on');
+        el.querySelector('.cki').innerHTML = '✓';
+      }
+    });
+    const card = document.getElementById('C'+id);
+    const st = ist(pos);
+    if(card && st !== 'open') card.className = 'card ' + st;
+    if(s.fotos && s.fotos.length) updFG(pos);
+    updProg(pos);
+  });
+  upStats();
+}
+
+function expKunde() {
+  const now = new Date();
+  const d = now.toLocaleDateString('de-DE');
+  let rows = [];
+  DATA.forEach(sec => {
+    sec.subsections.forEach(sub => {
+      sub.items.forEach(item => {
+        const s = gs(item.pos);
+        if(!s.g) return;
+        rows.push({
+          bereich: sec.bez,
+          sub: sub.bez,
+          pos: item.pos,
+          bez: item.bez,
+          fabrikat: item.fabrikat,
+          typ: item.typ,
+          g:s.g, m:s.m, a:s.a, ib:s.ib, ew:s.ew
+        });
+      });
+    });
+  });
+
+  if(rows.length === 0) {
+    alert('Keine Positionen mit Status Geliefert vorhanden.');
+    return;
+  }
+
+  let lastB = '', lastS = '';
+  let tableRows = '';
+  rows.forEach((r,i) => {
+    if(r.bereich !== lastB) {
+      if(lastB !== '') tableRows += '<tr><td colspan="9" style="height:10px;background:#f5f3f0;border:none"></td></tr>';
+      tableRows += `<tr><td colspan="9" style="background:#2d2926;color:#c8a882;font-weight:700;padding:6px 8px;font-size:12px">${r.bereich}</td></tr>`;
+      lastB = r.bereich;
+      lastS = '';
+    }
+    if(r.sub !== lastS) {
+      tableRows += `<tr><td colspan="9" style="background:#eeecea;color:#6b5040;font-weight:700;padding:4px 8px;border-left:3px solid #c8a882;font-size:11px">${r.sub}</td></tr>`;
+      lastS = r.sub;
+    }
+    const chk = v => v ? '<span style="color:#3a7a3a;font-weight:700">✓</span>' : '–';
+    tableRows += `<tr style="background:${i%2===0?'#fff':'#faf9f7'}">
+      <td style="padding:4px 6px;font-size:10px;color:#9a9a9a">${r.pos}</td>
+      <td style="padding:4px 6px;font-weight:700;font-size:11px">${r.bez}</td>
+      <td style="padding:4px 6px;font-size:10px;color:#6b5040">${r.fabrikat||'-'}</td>
+      <td style="padding:4px 6px;font-size:10px;color:#9a9a9a">${r.typ||'-'}</td>
+      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.g)}</td>
+      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.m)}</td>
+      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.a)}</td>
+      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.ib)}</td>
+      <td style="padding:4px 6px;text-align:center;font-size:10px">${chk(r.ew)}</td>
+    </tr>`;
+  });
+
+  const html = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8">
+<title>Bericht Mensa GGS BG – ${d}</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;padding:15px;color:#2d2926;font-size:12px;}
+.kpc{border-bottom:2px solid #6b5040;padding-bottom:10px;margin-bottom:15px;}
+.logo{font-size:18px;font-weight:700}
+h2{font-size:13px;color:#6b5040;margin:0 0 12px;font-weight:400;}
+table{width:100%;border-collapse:collapse;}
+th{background:#2d2926;color:#c8a882;font-size:10px;padding:5px;text-align:left;font-weight:700;}
+td{border-bottom:1px solid #eee;padding:5px;vertical-align:middle;}
+.sig{margin-top:30px;display:flex;gap:40px;}
+.sig-box{flex:1;}
+.sig-line{border-top:1px solid #2d2926;padding-top:4px;font-size:10px;color:#999;margin-top:30px;}
+</style></head><body>
+<div class="kpc"><div class="logo">KPC GMBH</div><div style="font-size:11px;color:#999">Mensa GGS – Bergisch Gladbach | ${d}</div></div>
+<h2>Leistungsfeststellung – Gelieferte Positionen</h2>
+<table>
+<tr><th>Pos</th><th>Bezeichnung</th><th>Fabrikat</th><th>Typ</th><th>G</th><th>M</th><th>A</th><th>IB</th><th>EW</th></tr>
+${tableRows}
+</table>
+<div style="margin-top:20px;font-size:10px;color:#999">Gesamt: ${rows.length} Positionen erfasst</div>
+<div class="sig"><div class="sig-box"><div class="sig-line">KPC GmbH</div></div><div class="sig-box"><div class="sig-line">Auftraggeber</div></div></div>
+</body></html>`;
+
+  const w = window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
+}
+
+buildTabs();
+buildPanels();
+loadState();
+</script>
+
+</body>
+</html>
