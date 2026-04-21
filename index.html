@@ -352,36 +352,32 @@ function resizeImage(file, maxWidth) {
 document.getElementById('fi').addEventListener('change',async function(e){
   const file=e.target.files[0];
   if(!file||!FPOS)return;
-  showLoader('Foto wird hochgeladen...');
+  showLoader('Foto wird gespeichert...');
   try {
-    // Resize image before upload
-    const resized = await resizeImage(file, 1200);
-    const fname = FPOS.replace(/\./g,'_') + '_' + Date.now() + '.jpg';
-    // Convert to blob with correct type
-    const res = await fetch(SB_URL+'/storage/v1/object/fotos/'+fname, {
-      method:'POST',
-      headers:{
-        'apikey':SB_KEY,
-        'Authorization':'Bearer '+SB_KEY,
-        'Content-Type':'image/jpeg',
-        'x-upsert':'true'
-      },
-      body:resized
+    const base64 = await new Promise((res,rej)=>{
+      const canvas=document.createElement('canvas');
+      const img=new Image();
+      const reader=new FileReader();
+      reader.onload=ev=>{
+        img.onload=()=>{
+          let w=img.width,h=img.height,max=800;
+          if(w>max){h=Math.round(h*max/w);w=max;}
+          canvas.width=w;canvas.height=h;
+          canvas.getContext('2d').drawImage(img,0,0,w,h);
+          res(canvas.toDataURL('image/jpeg',0.75));
+        };
+        img.src=ev.target.result;
+      };
+      reader.onerror=rej;
+      reader.readAsDataURL(file);
     });
-    if(!res.ok) throw new Error(await res.text());
-    const publicUrl = SB_URL+'/storage/v1/object/public/fotos/'+fname+'?t='+Date.now();
-    gs(FPOS).fotos.push(publicUrl);
-    // Save foto URLs to database
+    gs(FPOS).fotos.push(base64);
     await saveFotos(FPOS);
     updFG(FPOS);rc(FPOS);upStats();
     hideLoader();
-  } catch(e) {
+  } catch(err){
     hideLoader();
-    // Fallback: save locally
-    const r=new FileReader();
-    r.onload=ev=>{gs(FPOS).fotos.push(ev.target.result);updFG(FPOS);rc(FPOS);upStats();};
-    r.readAsDataURL(file);
-    console.warn('Supabase Upload fehlgeschlagen, lokal gespeichert:', e);
+    console.warn('Foto-Fehler:',err);
   }
 });
 function updFG(pos){
@@ -392,19 +388,9 @@ function updFG(pos){
   if(b)b.innerHTML='&#128247; Foto'+(s.fotos.length?` <span class="fcnt">${s.fotos.length}</span>`:'');
 }
 function df(pos,i){
-  const url = gs(pos).fotos[i];
   gs(pos).fotos.splice(i,1);
   updFG(pos);rc(pos);upStats();
-  // Save updated fotos list to database
   saveFotos(pos);
-  // Try to delete from Supabase Storage
-  if(url && url.includes('/storage/v1/object/public/fotos/')) {
-    const fname = url.split('/fotos/')[1].split('?')[0];
-    fetch(SB_URL+'/storage/v1/object/fotos/'+fname, {
-      method:'DELETE',
-      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
-    }).catch(e => console.warn('Foto löschen fehlgeschlagen:', e));
-  }
 }
 
 // LIGHTBOX
